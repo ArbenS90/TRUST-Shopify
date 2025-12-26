@@ -85,25 +85,74 @@
         </div> 
       </nav>
     {% else %}
-      <nav 
+<nav 
         id="navbar-desktop" 
         class="navbar d-none d-desktop-block p-0"
         {{ block.shopify_attributes }}>
         <div 
           class="container d-block {{ block.settings.pt | prepend: 'pt-' }} {{  block.settings.pb | prepend: 'pb-' }}"
           style="max-width: {{ block.settings.container_max_width | append: 'px' }};">
-          <div
-            class="row align-items-center flex-grow-1">
-            <div class="col-4">
+          
+          {%- comment -%} FILA 1: Buscador | Logo | Iconos {%- endcomment -%}
+          <div class="row align-items-center mb-3">
+            <div class="col-3">
+              <ul class="nav">
+                {% if settings.search %}
+                  <li class="nav-item">
+                    
+                      class="nav-link nav-link-icon ps-0" 
+                      href="#offcanvas-search" 
+                      data-bs-toggle="offcanvas"
+                      aria-controls="offcanvas-search" 
+                      aria-label="{{ 'general.accessibility.search' | t }}"
+                      role="button">
+                      {% render 'svg-icons', icon: 'search' %}
+                    </a>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+            
+            <div class="col-6 text-center">
               {% render 'navbar-logo', block: block %}
             </div>
-            <div class="col-10">
-              {% render 'navbar-desktop-menu', block: block %}
-            </div>
-            <div class="col-4">
-              {% render 'navbar-desktop-icons', block: block %}
+            
+            <div class="col-3">
+              <ul class="nav justify-content-end">
+                {% if shop.customer_accounts_enabled %}
+                  <li class="nav-item">
+                    <a 
+                      class="nav-link nav-link-icon {% if template.name == 'login' or template.name == 'account' %}active{% endif %}" 
+                      aria-current="{% if template.name == 'login' or template.name == 'account' %}page{% endif %}" 
+                      href="{{ routes.account_url }}"
+                      aria-label="{{ 'general.accessibility.account' | t }}">
+                      {% render 'svg-icons', icon: 'account' %}
+                    </a>
+                  </li>
+                {% endif %}
+                <li class="nav-item">
+                  <a 
+                    class="nav-link nav-link-icon pe-0" 
+                    href="#offcanvas-cart" 
+                    data-bs-toggle="offcanvas" 
+                    aria-controls="offcanvas-cart" 
+                    aria-label="{{ 'general.accessibility.cart' | t }} {{ cart.item_count }}"
+                    role="button">
+                    {% render 'svg-icons', icon: 'cart' %}
+                    {% render 'cart-count-badge' %}
+                  </a>  
+                </li>
+              </ul>
             </div>
           </div>
+          
+          {%- comment -%} FILA 2: Menú completo centrado {%- endcomment -%}
+          <div class="row">
+            <div class="col-12">
+              {% render 'navbar-desktop-menu', block: block %}
+            </div>
+          </div>
+          
         </div>
       </nav>
     {% endif %}
