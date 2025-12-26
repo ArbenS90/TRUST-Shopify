@@ -14,13 +14,24 @@
     {{ section.settings.letter_spacing | prepend: 'ls-' }} 
   "
   style="
+    {% if section.settings.custom_bg_color != blank %}
+      background-color: {{ section.settings.custom_bg_color }} !important;
+    {% endif %}
+    {% if section.settings.custom_text_color != blank %}
+      color: {{ section.settings.custom_text_color }} !important;
+    {% endif %}
     --bs-bg-opacity: {{ section.settings.bg_opacity | append: '%' }};
     --bs-border-opacity: {{ section.settings.border_opacity | append: '%' }};
   ">
   <div class="announcement-marquee-wrapper overflow-hidden">
     <div 
       class="announcement-marquee d-flex align-items-center {{ section.settings.pt | prepend: 'pt-' }} {{ section.settings.pb | prepend: 'pb-' }}"
-      style="animation-duration: {{ section.settings.marquee_speed | append: 's' }};"
+      style="
+        animation-duration: {{ section.settings.marquee_speed | append: 's' }};
+        {% if section.settings.custom_text_color != blank %}
+          color: {{ section.settings.custom_text_color }} !important;
+        {% endif %}
+      "
       aria-label="{{ 'general.accessibility.announcements' | t }}">
       {% for block in section.blocks %}
         <div class="announcement-marquee-item flex-shrink-0 px-4" {{ block.shopify_attributes }}>
@@ -52,9 +63,21 @@
       "content": "Styling"
     },
     {
+      "type": "color",
+      "id": "custom_bg_color",
+      "label": "Color de fondo personalizado",
+      "info": "Deja vacío para usar los colores por defecto"
+    },
+    {
+      "type": "color",
+      "id": "custom_text_color",
+      "label": "Color de texto personalizado",
+      "info": "Deja vacío para usar los colores por defecto"
+    },
+    {
       "type": "select",
       "id": "bg_color",
-      "label": "Background color",
+      "label": "Background color (si no usas color personalizado)",
       "default": "bg-body",
       "options": [
         { "value": "bg-primary", "label": "Primary" },
@@ -86,7 +109,7 @@
     {
       "type": "select",
       "id": "text_color",
-      "label": "Text color",
+      "label": "Text color (si no usas color personalizado)",
       "default": "text-body",
       "options": [
         { "value": "text-primary", "label": "Primary" },
