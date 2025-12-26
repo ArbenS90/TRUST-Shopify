@@ -19,12 +19,12 @@
             "overlay_color": "#000000",
             "overlay_opacity": 30,
             "overlay_blur": 2,
-            "subtitle": "Developed by KondaSoft",
-            "title": "Simple to Use, Easy to Customize",
-            "description": "<p>Free Shopify Theme inspired by simplicity and elegance.</p>",
-            "btn_primary_text": "Primary button",
+            "subtitle": "",
+            "title": "Soluciones de Aseo Confiables para Cada Espacio",
+            "description": "<p><br/>Productos resistentes, funcionales y pensados para ofrecer el mejor desempeño en tareas de limpieza y almacenamiento. Calidad profesional al alcance del uso diario.<br/><br/></p>",
+            "btn_primary_text": "Ver productos",
             "btn_primary_url": "",
-            "btn_secondary_text": "Secondary button",
+            "btn_secondary_text": "",
             "btn_secondary_url": ""
           }
         }
