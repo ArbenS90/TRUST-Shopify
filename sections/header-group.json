@@ -142,7 +142,7 @@
         "text_color": "text-white",
         "border_top_width": 0,
         "border_bottom_width": 0,
-        "border_color": "border-body",
+        "border_color": "border-secondary",
         "border_opacity": 100,
         "shadow": ""
       }
