@@ -80,12 +80,15 @@
         "slide_bKbeQB",
         "slide_VaHpNK"
       ],
+      "custom_css": [
+        ".announcement-marquee-wrapper {background-color: #F6BE00; color: #000000;}"
+      ],
       "name": "Announcement bar",
       "settings": {
-        "bg_color": "bg-primary",
+        "bg_color": "bg-white",
         "bg_opacity": 100,
         "bg_gradient": "",
-        "text_color": "text-primary",
+        "text_color": "text-secondary",
         "border_top_width": 0,
         "border_bottom_width": 0,
         "border_color": "border-body",
