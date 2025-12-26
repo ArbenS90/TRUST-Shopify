@@ -82,7 +82,7 @@
       ],
       "name": "Announcement bar",
       "settings": {
-        "bg_color": "bg-body",
+        "bg_color": "bg-primary",
         "bg_opacity": 100,
         "bg_gradient": "",
         "text_color": "text-primary",
