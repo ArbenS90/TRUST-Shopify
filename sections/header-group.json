@@ -81,7 +81,7 @@
         "slide_VaHpNK"
       ],
       "custom_css": [
-        ".announcement-marquee-wrapper {background-color: #F6BE00; color: #000000;}"
+        ".announcement-marquee-wrapper {background-color: #f6be00; color: #000000;}"
       ],
       "name": "Announcement bar",
       "settings": {
@@ -122,8 +122,9 @@
           "type": "desktop",
           "settings": {
             "container_max_width": "",
-            "logo_height": 32,
-            "main_menu": "",
+            "logo": "shopify://shop_images/TRUST-01-e1757045390906.png",
+            "logo_height": 100,
+            "main_menu": "main-menu",
             "pt": 5,
             "pb": 5
           }
