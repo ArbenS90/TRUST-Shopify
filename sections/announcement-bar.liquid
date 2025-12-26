@@ -17,65 +17,31 @@
     --bs-bg-opacity: {{ section.settings.bg_opacity | append: '%' }};
     --bs-border-opacity: {{ section.settings.border_opacity | append: '%' }};
   ">
-  <div class="container">
+  <div class="announcement-marquee-wrapper overflow-hidden">
     <div 
-      id="carousel-{{ section.id }}" 
-      class="carousel slide " 
-      data-bs-ride="{% if section.settings.carousel_autoplay > 0 %}carousel{% else %}false{% endif %}"
-      data-bs-interval="{{ section.settings.carousel_autoplay | times: 1000 }}"
-      aria-label="{{ 'general.accessibility.announcements' | t }}"
-      style="max-width: {{ section.settings.container_max_width }}px;">
-      <div class="carousel-inner">
-        {% for block in section.blocks %}
-          <div 
-            class="
-              carousel-item 
-              {{ section.settings.pt | prepend: 'pt-' }} 
-              {{ section.settings.pb | prepend: 'pb-' }}
-              {% if forloop.first %}active{% endif %}
-            " 
-            data-index="{{ forloop.index0 }}" 
-            {{ block.shopify_attributes }}>
-            <div class="description rte lh-sm">
-              {{ block.settings.announcement }}
-            </div>
-          </div>
-        {% endfor %}
-      </div>
-      {% if section.blocks.size > 1 %}
-        <button 
-          class="carousel-control carousel-control-prev" 
-          type="button" 
-          data-bs-target="#carousel-{{ section.id }}" 
-          data-bs-slide="prev"
-          aria-label="{{ 'general.accessibility.previous' | t }}">
-          {% render 'svg-icons', icon: 'chevron-left', size: 22 %}
-        </button>
-        <button 
-          class="carousel-control carousel-control-next" 
-          type="button" 
-          data-bs-target="#carousel-{{ section.id }}" 
-          data-bs-slide="next"
-          aria-label="{{ 'general.accessibility.next' | t }}">
-          {% render 'svg-icons', icon: 'chevron-right', size: 22 %}
-        </button>
-      {% endif %}
+      class="announcement-marquee d-flex align-items-center {{ section.settings.pt | prepend: 'pt-' }} {{ section.settings.pb | prepend: 'pb-' }}"
+      style="animation-duration: {{ section.settings.marquee_speed | append: 's' }};"
+      aria-label="{{ 'general.accessibility.announcements' | t }}">
+      {% for block in section.blocks %}
+        <div class="announcement-marquee-item flex-shrink-0 px-4" {{ block.shopify_attributes }}>
+          <span class="description rte lh-sm">
+            {{ block.settings.announcement }}
+          </span>
+          {% unless forloop.last %}<span class="px-4">•</span>{% endunless %}
+        </div>
+      {% endfor %}
+      {% for block in section.blocks %}
+        <div class="announcement-marquee-item flex-shrink-0 px-4">
+          <span class="description rte lh-sm">
+            {{ block.settings.announcement }}
+          </span>
+          {% unless forloop.last %}<span class="px-4">•</span>{% endunless %}
+        </div>
+      {% endfor %}
     </div>
   </div>
 </section>
 
-{% if request.design_mode %}
-  <script>
-    document.addEventListener('shopify:block:select', (event) => {
-      const carousel = event.target.closest('#carousel-{{ section.id }}')
-    
-      if (carousel) {
-        bootstrap.Carousel.getOrCreateInstance(carousel, { ride: false })
-          .to(event.target.dataset.index)
-      }
-    })
-  </script>
-{% endif %}
 
 {% schema %}
 {
@@ -231,24 +197,18 @@
     },
     {
       "type": "header",
-      "content": "Carousel"
+      "content": "Marquee (Carrusel Infinito)"
     },
     {
       "type": "range",
-      "id": "carousel_autoplay",
-      "label": "Autoplay",
-      "min": 0,
-      "max": 10,
-      "default": 5,
-      "unit": "sec",
-      "info": "Selecing \"0\" will disable autoplay."
-    },
-    {
-      "type": "checkbox",
-      "id": "carousel_vertical",
-      "label": "Vertical sliding",
-      "info": "NOTE: This feature is supported only in our Premium Shopify Themes. [Browse premium themes](https://www.kondasoft.com/collections/shopify-themes)",      
-      "default": true
+      "id": "marquee_speed",
+      "label": "Velocidad del marquee",
+      "min": 10,
+      "max": 60,
+      "default": 30,
+      "step": 1,
+      "unit": "seg",
+      "info": "Tiempo para completar un ciclo completo"
     },
     {
       "type": "header",
