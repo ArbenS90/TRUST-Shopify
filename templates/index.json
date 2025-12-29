@@ -65,6 +65,9 @@
     },
     "featured_products_nXJKQn": {
       "type": "featured-products",
+      "custom_css": [
+        ".title {font-weight: bold; color: #262626;}"
+      ],
       "settings": {
         "bg_color": "bg-body",
         "bg_opacity": 100,
@@ -75,16 +78,18 @@
         "border_color": "border-primary",
         "border_opacity": 100,
         "container_max_width": "",
-        "products": [],
+        "products": [
+          "kit-inicial-de-estanteria-91x46x1-83"
+        ],
         "collection": "latest",
-        "limit": 8,
+        "limit": 4,
         "recommended_mode": true,
         "recommended_mode_intent": "related",
-        "header_title": "Featured Products",
+        "header_title": "Productos destacados",
         "header_title_font_size": "h3",
-        "header_description": "<p>Add on optional description for this section</p>",
-        "header_description_font_size": "fs-md",
-        "slider_speed": 300,
+        "header_description": "<p>Explora nuestras líneas diseñadas para un uso profesional, institucional o doméstico.</p>",
+        "header_description_font_size": "fs-sm",
+        "slider_speed": 400,
         "slider_navigation": true,
         "slider_pagination": true,
         "slider_pagination_type": "bullets",
@@ -100,6 +105,7 @@
     },
     "richtext_4miPYL": {
       "type": "richtext",
+      "disabled": true,
       "settings": {
         "bg_color": "bg-primary",
         "bg_opacity": 5,
